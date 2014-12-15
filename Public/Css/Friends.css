@@ -1,0 +1,93 @@
+.FriendBox
+{
+    margin: auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 512px;
+    min-height: 56px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 1px #011331;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    background-color: #FFFFFF;
+}
+
+.FriendDetail
+{
+    margin: auto;
+    margin-top: 8px;
+
+    width: 480px;
+    min-height: 24px;
+
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: normal;
+
+    border-top: 2px solid #DDDDDD;
+}
+
+.DemandBox
+{
+    margin: auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 512px;
+    min-height: 56px;
+
+    border-radius: 8px;
+
+    font-size: 20px;
+
+    box-shadow: 0 0 1px #011331;
+
+    background-color: #FFFFFF;
+}
+
+.DemandColumn
+{
+    margin: auto;
+
+    padding:8px;
+
+    width: 480px;
+    min-height: 32px;
+
+    font-weight: bold;
+
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.FriendDoubleLaneColumn
+{
+    padding:8px;
+    
+    text-align: center;
+
+    min-height: 24px;
+
+    width: 240px;
+
+    font-weight: normal;
+    font-size: 20px;
+    color: #FF0000;
+}
+
+.LeftPart
+{
+    float: left;
+}
+
+.RightPart
+{
+    float: right;
+}

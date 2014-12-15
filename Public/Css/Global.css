@@ -1,0 +1,187 @@
+*
+{
+	outline:none;
+}
+
+body
+{
+	text-align:center;
+
+	margin:0px;
+	padding:0px;
+
+    background-attachment: fixed;
+    background-color: #D8D8D8;
+}
+
+a
+{
+	text-decoration: none;
+}
+
+font
+{
+	font-family: '微软雅黑';
+}
+
+.TopBar
+{
+    margin: auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 768px;
+    min-height: 32px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 1px #011331;
+
+    background-color: #FFFFFF;
+}
+
+.NaviButton
+{
+    width: 192px;
+    min-height: 32px;
+
+    font-size: 20px;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+.Frame
+{
+    margin: auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 768px;
+    min-height: 256px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 1px #011331;
+
+    background-color: #FFFFFF;
+}
+
+.TopTitle
+{
+    margin: auto;
+
+    width: 512px;
+    height: 64px;
+
+    border-bottom: 2px solid #DDDDDD;
+
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.Content
+{
+    margin: auto;
+    margin-top: 16px;
+
+    width: 768px;
+    min-height: 128px;
+}
+
+.LesserTitle
+{
+    margin: auto;
+    margin-top: 16px;
+
+    width: 512px;
+    height: 32px;
+
+    font-size: 24px;
+}
+
+.TextAlertRow
+{
+    margin: auto;
+    margin-top: 16px;
+
+    width: 512px;
+    height: 32px;
+
+    font-size: 16px;
+    color: #FF0000;
+}
+
+.Form
+{
+    margin: auto;
+    margin-top: 16px;
+
+    width: 512px;
+    min-height: 48px;
+}
+
+.FormColumnLeftPart
+{
+    min-height: 48px;
+    width: 128px;
+
+    font-size: 24px;
+}
+
+.FormColumnRightPart
+{
+    min-height: 48px;
+    width: 384px;
+}
+
+.FormInput
+{
+    height: 32px;
+    width: 384px;
+}
+
+.ButtonIMG
+{
+    margin: auto;
+    margin-top: 8px;
+
+    height: 64px;
+    width: 64px;
+
+    background-image: url(IMG/Submit.jpg);
+}
+
+.InputBar
+{
+    margin:auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 480px;
+    min-height: 96px;
+
+    font-size: 16px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 1px #011331;
+
+    background-color: #FFFFFF;
+}
+
+.InputField
+{
+    margin：auto;
+
+    width: 416px;
+    height: 32px;
+}
+
+.Clickable
+{
+    cursor: pointer;
+}

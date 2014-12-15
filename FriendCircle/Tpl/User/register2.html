@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="__JS__/Jquery/jquery-1.11.1.min.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+	<script src="__JS__/Jquery/jquery.form.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+	<title>注册页面</title>
+	<style>
+		.register{ width: 350px; position: relative; top:200px; margin: 0 auto; }
+		#register-head{}
+		.register-form{ position: relative; }
+		.row{ margin: 5px auto; }
+		.ahead{}
+		.input{ font-size: xx-small; width: 170px; padding: 3px 3px; }
+		#usr{}
+		#pwd{}
+		#repwd{}
+		.error-prompt{ color: red; font-size: 10px; margin-left: 4px; }
+		.btn{ margin-top: 6px; border: 2px solid silver; width: 119px; height: 27px; }
+		#return-login{ margin-left: 7px; }
+		#wait{ font-size: 10px; color: red; }
+	</style>
+</head>
+
+<body>
+	<div class='register'>
+		<div id="register-head"><h1>注册</h1></div>
+		<p id="wait"></p>
+		<div class="register-form">
+			<div class="row">
+				<span class="ahead">用户名:&nbsp&nbsp</span><input type="text" class="input" id="usr" placeholder="只能由4到20位数字或字符组成"/>
+				<span class="error-prompt" id="username-error"></span>
+			</div>
+			<div class="row">
+				<span class="ahead">密码:&nbsp&nbsp&nbsp&nbsp</span><input type="password" class="input" id="pwd"/>
+				<span class="error-prompt" id="password-error"></span>
+			</div>
+			<div class="row">
+				<span class="ahead">重复密码:</span><input type="password" class="input" id="repwd"/>
+				<span class="error-prompt" id="repassword-error"></span>
+			</div>
+			<div class="row">
+				<button class="btn" id="confirm-register">确认注册</button>
+				<button class="btn" id="return-login">返回登陆</button>
+			</div>
+		</div>
+	</div>
+	<script src="__JS__/Account/register.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+</body>
+</html>

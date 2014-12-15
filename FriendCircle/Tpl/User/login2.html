@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="__JS__/Jquery/jquery-1.11.1.min.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+	<script src="__JS__/Jquery/jquery.form.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+	<title>登陆页面</title>
+	<style>
+		.login{	width: 225px; margin: 0 auto; top: 200px; position: relative; }
+		button{ margin-top: 10px; width: 69px; border: 2px silver solid; }
+		#confirm-login{ margin-left: 66px; }
+		#register-jump{ margin-left: 8px; }
+		.login-head{ font-size: 30px; margin: 0 auto; width: 120px; }
+		.error-text{ color: red; font-size: 13px; }
+		#wait{ font-size: 10px; color: red; }
+	</style>
+</head>
+
+<body>
+	<div class="login">
+		<div class="login-head"><p>用户登陆</p></div>
+		<p id="wait"></p>
+		<span>用户名:&nbsp</span><input type="text" id="username"/>
+		<span class="error-text" id="username-error"></span>
+		<br/>
+		<span>密码:&nbsp&nbsp&nbsp</span><input type="password" id="password"/>
+		<span class="error-text" id="password-error"></span>
+		<br/>
+		<button id="confirm-login">登陆</button>
+		<button id="register-jump">注册</button>
+	</div>
+	<script src="__JS__/Account/login.js?t=1418584254?t=1418290131" type="text/javascript"></script>
+</body>
+
+</html>

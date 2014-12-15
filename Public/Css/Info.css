@@ -1,0 +1,43 @@
+.InfoBox
+{
+    margin: auto;
+    margin-top: 16px;
+
+    padding:16px;
+
+    width: 512px;
+    min-height: 64px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 0 1px #011331;
+
+    background-color: #FFFFFF;
+}
+
+.InfoTitle
+{
+    margin: auto;
+
+    padding:8px;
+
+    width: 480px;
+    min-height: 32px;
+
+    border-bottom: 2px solid #DDDDDD;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.InfoContent
+{
+    margin: auto;
+
+    padding:8px;
+
+    width: 480px;
+    min-height: 32px;
+
+    font-size: 20px;
+}
