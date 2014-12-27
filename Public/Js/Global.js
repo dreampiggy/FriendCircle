@@ -1,3 +1,8 @@
+    var __info__ = 'http://localhost:81/FriendCircle/Index/info/';
+    var __friends__ = 'http://localhost:81/FriendCircle/Index/friends/';
+    var __logout__ = 'http://localhost:81/FriendCircle/User/logout/';
+    var __Friend__ = 'http://localhost:81/FriendCircle/Friend/';
+    var __index__ = 'http://localhost:81/FriendCircle/';
 function goAjax(method,sorce,flag)
 {
     //运行ajax
@@ -53,18 +58,20 @@ function InputBar(tid,tDiv,l)
                 isAnonymous=document.getElementsByName("anonymous")[0].checked;
                 var isAnonymousValue = isAnonymous ? 1 : 0 ;
               //  window.location.href = '__Friend__/addMoment';
-                $.post('http://localhost:81/FriendCircle/Friend/addMoment', {
+                $.post(__Friend__+'addMoment', {
                     anonymity: isAnonymousValue,
                     content: inputBox.value, 
                 }, function(data){
-                    window.location.href = "http://localhost:81/FriendCircle";
+                    alert(data.info);
+                    location.reload();
                 }, 'json');
             }
             else if(targetID=="NewFriend")
             {
-                $.post('http://localhost:81/FriendCircle/Friend/setFriendRequest/'+inputBox.value,
+                $.post(__Friend__+'setFriendRequest/'+inputBox.value,
                 function(data){
-                    window.location.href = "http://localhost:81/FriendCircle";
+                    alert(data.info);
+                    location.reload();
                 }, 'json');
             }
             else
@@ -75,7 +82,7 @@ function InputBar(tid,tDiv,l)
                 IDstr=targetID.split("/");
                 var toParentID=IDstr[0];
                 var toRootID=IDstr[1];
-                $.post('http://localhost:81/FriendCircle/Friend/addComment/'+toRootID+'/'+toParentID+'/'+inputBox.value+'/'+isAnonymousValue,
+                $.post(__Friend__+'addComment/'+toRootID+'/'+toParentID+'/'+inputBox.value+'/'+isAnonymousValue,
                 function(data){
                     if(data.status){
                         alert('成功');

@@ -29,7 +29,18 @@ class FriendAction extends Action {
     public function setFriendRequest(){
     	$username = $this->_param(2);
     	$userID =  $this->user->getUserID($username);
-        $this->ajaxReturn($this->user->setFriendRequest($userID), '成功', 1);
+    	if($userID){
+    		$sendResult = $this->user->setFriendRequest($userID);
+    		if($sendResult){
+    			$this->ajaxReturn('', '成功', 1);
+    		}
+    		else{
+    			$this->ajaxReturn('', '失败', 1);
+    		}
+    	}
+        else{
+        	$this->ajaxReturn('','失败',0);
+        }
     }
 
     public function setFriendRespond(){
@@ -283,7 +294,6 @@ class FriendAction extends Action {
     public function setForbidInfo(){
     	$userName = $this->_param(2);
     	$userID2 = $this->user->getUserID($userName); 
-
 		if($this->user->setForbidInfo($userID2)){
 			$this->ajaxReturn("setOK","OK",1);
 		}

@@ -14,8 +14,14 @@
         $("#index").click(function(){
             window.location.href = '__index__';
         });
+        $("#myinfo").click(function(){
+            window.location.href = '__info__/{$_SESSION["username"]}';
+        });
         $("#friends").click(function(){
             window.location.href = '__friends__';
+        });
+        $("#log-out").click(function(){
+            window.location.href = '__logout__';
         });
     })
     </script>
@@ -31,12 +37,17 @@
                 </td>
                 <td>
                     <div class="NaviButton">
-                        <font>我的主页</font>
+                        <font id="myinfo">我的主页</font>
                     </div>
                 </td>
                 <td>
                     <div class="NaviButton">
                         <font id="friends">我的好友</font>
+                    </div>
+                </td>
+                <td>
+                    <div class="NaviButton">
+                        <font id="log-out">退出</font>
                     </div>
                 </td>
             </tr>
@@ -84,7 +95,7 @@
 var u = document.getElementById("forbid").getAttribute('value');
 if(u == 'no'){
 
-    var url = 'http://localhost:81/FriendCircle/Friend/getUserMoment/';
+    var url = '__Friend__/getUserMoment/';
     var list = new MomentsList();
     var userNameURI = "{$username}";
     url += userNameURI;

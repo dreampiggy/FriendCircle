@@ -1,3 +1,8 @@
+    var __info__ = 'http://localhost:81/FriendCircle/Index/info/';
+    var __friends__ = 'http://localhost:81/FriendCircle/Index/friends/';
+    var __logout__ = 'http://localhost:81/FriendCircle/User/logout/';
+    var __Friend__ = 'http://localhost:81/FriendCircle/Friend/';
+    var __index__ = 'http://localhost:81/FriendCircle/';
 function Friend(name)
 {
     var friendName=name;
@@ -34,7 +39,7 @@ function Friend(name)
         $(sheildHimDiv).addClass("Clickable");
         $(sheildHimDiv).click(function(){
           //阻止我看对方的动态
-          $.post('http://localhost:81/FriendCircle/Friend/setForbidMessage/'+friendName, 
+          $.post(__Friend__+'setForbidMessage/'+friendName, 
             function(data){
                 if(data.info=="OK")
                 {
@@ -50,7 +55,7 @@ function Friend(name)
         $(sheildMeDiv).addClass("Clickable");
         $(sheildMeDiv).click(function(){
           //阻止对方看我
-            $.post('http://localhost:81/FriendCircle/Friend/setForbidInfo/'+friendName, 
+            $.post(__Friend__+'setForbidInfo/'+friendName, 
             function(data){
                 if(data.info=="OK")
                 {
@@ -64,7 +69,7 @@ function Friend(name)
         });
         $(friendTitle).addClass("Clickable");
         $(friendTitle).click(function(){
-            window.location.href = 'http://localhost:81/FriendCircle/Index/info/'+friendName;
+            window.location.href = __info__+friendName;
         });
     }
 }
@@ -118,18 +123,18 @@ function FriendDemand(fName)
         rejectDiv.innerHTML="<font>驳回</font>";
         $(acceptDiv).addClass("Clickable");
         $(acceptDiv).click(function(){
-            $.post('http://localhost:81/FriendCircle/Friend/setFriendRespond/'+fromName+'/agree',
+            $.post(__Friend__+'setFriendRespond/'+fromName+'/agree',
             function(data){
                 alert(data.info);
-                window.location.href = 'http://localhost:81/FriendCircle';
+                window.location.href = __index__;
             }, 'json');
         });
         $(rejectDiv).addClass("Clickable");
         $(rejectDiv).click(function(){
-            $.post('http://localhost:81/FriendCircle/Friend/setFriendRespond/'+fromName+'/reject',
+            $.post(__Friend__+'setFriendRespond/'+fromName+'/reject',
             function(data){
                 alert(data.info);
-                window.location.href = 'http://localhost:81/FriendCircle';
+                window.location.href = __index__;
             }, 'json');
         });
     }

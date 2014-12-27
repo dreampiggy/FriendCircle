@@ -1,3 +1,8 @@
+    var __info__ = 'http://localhost:81/FriendCircle/Index/info/';
+    var __friends__ = 'http://localhost:81/FriendCircle/Index/friends/';
+    var __logout__ = 'http://localhost:81/FriendCircle/User/logout/';
+    var __Friend__ = 'http://localhost:81/FriendCircle/Friend/';
+    var __index__ = 'http://localhost:81/FriendCircle/';
 function Comment(id,aName,time,content,pid,rid)
 {
     var commentID=id;
@@ -60,7 +65,7 @@ function Comment(id,aName,time,content,pid,rid)
         $(authorField).click(function(){
             if(authorName != "匿名用户")
             {
-                window.location.href = 'http://localhost:81/FriendCircle/Index/info/'+authorName;
+                window.location.href = __info__+authorName;
             }
         });
         $(contentField).addClass("ClickAble");
@@ -195,7 +200,7 @@ function Moment(id,aName,time,content)
             $(authorField).click(function(){
                 if(authorName != "匿名用户")
                 {
-                    window.location.href = 'http://localhost:81/FriendCircle/Index/info/'+authorName;
+                    window.location.href = __info__+authorName;
                 }
             });
             $(contentField).addClass("ClickAble");
@@ -211,7 +216,7 @@ function Moment(id,aName,time,content)
             $(loadCommentDiv).click(function(){
                 if(!commentIsShown)
                 {
-                    $.post('http://localhost:81/FriendCircle/Friend/getComment/'+momentID,
+                    $.post(__Friend__+'getComment/'+momentID,
                     function(data){
                         var result = data.data;
                         if(result!=null)

@@ -12,14 +12,18 @@
 	<script src="__JS__/Friends.js?t=1418584254?t=1418540840"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $("#myinfo").click(function(){
-            window.location.href = '__info__/{$_SESSION["username"]}';
-        });
-
         $("#index").click(function(){
             window.location.href = '__index__';
         });
-
+        $("#myinfo").click(function(){
+            window.location.href = '__info__/{$_SESSION["username"]}';
+        });
+        $("#friends").click(function(){
+            window.location.href = '__friends__';
+        });
+        $("#log-out").click(function(){
+            window.location.href = '__logout__';
+        });
     });
     </script>
 </head>
@@ -40,7 +44,12 @@
                 </td>
                 <td>
                     <div class="NaviButton">
-                        <font>我的朋友</font>
+                        <font id="friends">我的好友</font>
+                    </div>
+                </td>
+                <td>
+                    <div class="NaviButton">
+                        <font id="log-out">退出</font>
                     </div>
                 </td>
             </tr>
@@ -52,7 +61,7 @@
         </div>
         <div class="Content" id="content">
             <div class="LesserTitle">
-                <font>我的朋友</font>
+                <font>我的好友</font>
             </div>
             <div class="DemandBox" id="demandBox">
                 <font id="prompt">暂无任何请求</font>

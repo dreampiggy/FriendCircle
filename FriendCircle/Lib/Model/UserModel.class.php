@@ -69,9 +69,9 @@ class UserModel extends Model{
 		}
 		$userID = $this->userID;
 		$forbitUserResult1 = $this->execute("SELECT relationID FROM relation 
-			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '2to1'",$userID, $userID2);
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '2to1' OR forbidInfo = 'all'",$userID, $userID2);
 		$forbitUserResult2 = $this->execute("SELECT relationID FROM relation 
-			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '1to2'",$userID2, $userID);
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '1to2' OR forbidInfo = 'all'",$userID2, $userID);
 		if($forbitUserResult1 || $forbitUserResult2){
 			return array(
 				'userName'=>"***",
@@ -143,9 +143,9 @@ class UserModel extends Model{
 	public function checkForbid($userID2){
 		$userID = $this->userID;
 		$forbitUserResult1 = $this->execute("SELECT relationID FROM relation 
-			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '2to1'",$userID, $userID2);
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '2to1' OR forbidInfo = 'all'",$userID, $userID2);
 		$forbitUserResult2 = $this->execute("SELECT relationID FROM relation 
-			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '1to2'",$userID2, $userID);
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo = '1to2' OR forbidInfo = 'all'",$userID2, $userID);
 		if($forbitUserResult1 || $forbitUserResult2){
 			return true;
 		}
@@ -221,7 +221,7 @@ class UserModel extends Model{
 		if($userID1 == $userID2){
 			return false;
 		}
-		$checkFriendState = $this->query("SELECT state FROM relation
+		$checkFriendState = $this->query("SELECT userID1,userID2,state FROM relation
 			WHERE (userID1 = '%s' AND userID2 = '%s') OR (userID2 = '%s' AND userID1 = '%s') LIMIT 1",
 			$userID1, $userID2, $userID1, $userID2);
 
@@ -231,7 +231,7 @@ class UserModel extends Model{
 		}
 		else if($checkFriendState[0]['state'] == 'send'){
 			if($checkFriendState[0]['userID1']==$userID1){
-				return true;
+				return false;
 			}
 			else{
 				$userFriendSet = $this->execute("UPDATE relation SET state = 'friend' 
@@ -244,14 +244,22 @@ class UserModel extends Model{
 	}
 
 	/*
-	屏蔽传入userID！参数好友的动态，自己看不到他。
+	屏蔽传入userID2参数好友的动态，自己看不到他。
 	*/
 	public function setForbidMessage($userID2){
 		if($this->userID == $userID2){
 			return false;
 		}
-		$forbidResult1 = $this->execute("UPDATE relation SET forbidMessage = '2to1' WHERE userID1 = '%s' AND userID2 = '%s'",$this->userID,$userID2);
- 		$forbidResult2 = $this->execute("UPDATE relation SET forbidMessage = '1to2' WHERE userID1 = '%s' AND userID2 = '%s'",$userID2,$this->userID);
+		$forbidUserResult1 = $this->query("SELECT forbidMessage FROM relation WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$this->userID,$userID2);
+		$forbidUserResult2 = $this->query("SELECT forbidMessage FROM relation WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$userID2,$this->userID);
+		if($forbidUserResult1[0]['forbidMessage'] == "1to2" || $forbidUserResult2[0]['forbidMessage'] == "2to1"){
+			$forbidResult1 = $this->execute("UPDATE relation SET forbidMessage = 'all' WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$this->userID,$userID2);
+	 		$forbidResult2 = $this->execute("UPDATE relation SET forbidMessage = 'all' WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$userID2,$this->userID);
+		}
+		else{
+			$forbidResult1 = $this->execute("UPDATE relation SET forbidMessage = '2to1' WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$this->userID,$userID2);
+	 		$forbidResult2 = $this->execute("UPDATE relation SET forbidMessage = '1to2' WHERE userID1 = '%s' AND userID2 = '%s' AND state ='friend'",$userID2,$this->userID);	
+		}
  		if($forbidResult1 || $forbidResult2){
  			return true;
  		}
@@ -261,14 +269,24 @@ class UserModel extends Model{
 	}
 
 	/*
-	禁止传入userID！的用户来访问自己的个人信息。
+	禁止传入userID2的用户来访问自己的个人信息。
 	*/
 	public function setForbidInfo($userID2){
 		if($this->userID == $userID2){
 			return false;
 		}
-		$forbidResult1 = $this->execute("UPDATE relation SET forbidInfo = '1to2' WHERE userID1 = '%s' AND userID2 = '%s'",$this->userID,$userID2);
- 		$forbidResult2 = $this->execute("UPDATE relation SET forbidInfo = '2to1' WHERE userID1 = '%s' AND userID2 = '%s'",$userID2,$this->userID);
+		$forbitUserResult1 = $this->query("SELECT forbidInfo FROM relation 
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo != 'none'",$this->userID, $userID2);
+		$forbitUserResult2 = $this->query("SELECT forbidInfo FROM relation 
+			WHERE userID1 = '%s' AND userID2 = '%s' AND state = 'friend' AND forbidInfo != 'none'",$userID2, $this->userID);
+		if($forbitUserResult1[0]['forbidInfo'] == "2to1" || $forbitUserResult2[0]['forbidInfo'] == "1to2"){
+			$forbidResult1 = $this->execute("UPDATE relation SET forbidInfo = 'all' WHERE userID1 = '%s' AND userID2 = '%s'",$this->userID,$userID2);
+ 			$forbidResult2 = $this->execute("UPDATE relation SET forbidInfo = 'all' WHERE userID1 = '%s' AND userID2 = '%s'",$userID2,$this->userID);
+		}
+		else{
+			$forbidResult1 = $this->execute("UPDATE relation SET forbidInfo = '1to2' WHERE userID1 = '%s' AND userID2 = '%s'",$this->userID,$userID2);
+			$forbidResult2 = $this->execute("UPDATE relation SET forbidInfo = '2to1' WHERE userID1 = '%s' AND userID2 = '%s'",$userID2,$this->userID);
+		}
  		if($forbidResult1 || $forbidResult2){
  			return true;
  		}
@@ -288,10 +306,10 @@ class UserModel extends Model{
 		$friendArray = array();
 		//foreach($array as key => [userID1, userID2])
 		foreach ($userFriendList as $friendNum => $userIDList) {
-			if($userIDList['userID1'] == $userID && $userIDList['forbidMessage'] == "2to1"){
+			if($userIDList['userID1'] == $userID && $userIDList['forbidMessage'] == "2to1" || $userIDList['forbidMessage'] == "all"){
 				array_push($friendArray, $this->getUserName($userIDList['userID2']));
 			}
-			else if($userIDList['userID2'] == $userID && $userIDList['forbidMessage'] == "1to2"){
+			else if($userIDList['userID2'] == $userID && $userIDList['forbidMessage'] == "1to2" || $userIDList['forbidMessage'] == "all"){
 				array_push($friendArray, $this->getUserName($userIDList['userID1']));
 			}
 		}
